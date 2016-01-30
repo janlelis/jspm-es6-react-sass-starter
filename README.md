@@ -1,6 +1,6 @@
 # Setup
 
-## 1) Install Node
+## 1) Install NodeJS & NPM
 
 https://nodejs.org/en/download/
 
@@ -8,7 +8,7 @@ https://nodejs.org/en/download/
 
     $ sudo npm install -g jspm
 
-## 3) Install SASS
+## 3) Install Ruby & SASS
 
 http://sass-lang.com/install
 
@@ -27,14 +27,25 @@ This will start a local webserver on http://127.0.0.1:8000
 # Documentation Links
 ## Frontend
 
-- https://facebook.github.io/react/docs/getting-started.html
+- JavaScript: https://github.com/getify/You-Dont-Know-JS/
+- React Docs: https://facebook.github.io/react/docs/getting-started.html
+- React Style Guide: https://github.com/Khan/style-guides/blob/master/style/react.md
+- JSX: https://facebook.github.io/react/docs/jsx-in-depth.html
 
 ## Tooling
 
-- https://babeljs.io
-- https://github.com/systemjs/systemjs
-- http://jspm.io
-- https://docs.npmjs.com
+- ES6 Module System: https://github.com/systemjs/systemjs/blob/master/docs/es6-modules-overview.md
+- Babel: https://babeljs.io
+- System.js: https://github.com/systemjs/systemjs
+- JSPM: http://jspm.io
+- NPM: https://docs.npmjs.com
+
+## Testing
+
+- Jasmine Docs: http://jasmine.github.io/2.3/introduction.html
+- Jasmine Cheatsheet: http://www.cheatography.com/citguy/cheat-sheets/jasmine-js-testing/
+- Karma Docs: http://karma-runner.github.io
+- React Test Utils: https://facebook.github.io/react/docs/test-utils.html
 
 # Remarks / things to watch out for
 
