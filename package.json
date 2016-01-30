@@ -3,31 +3,42 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "npm run js && npm run html && npm run css",
+    "build": "npm run js && npm run static && npm run css",
     "clean": "rm -rf dist/*",
-    "html": "mkdir -p dist && cp src/index.html dist/",
-    "css": "mkdir -p dist/css && sass src/css/app.scss > dist/css/bundle.css",
+    "static": "mkdir -p dist && cp -R src/static/* dist/",
+    "css": "mkdir -p dist/css && sass -I src/css -I jspm_packages src/css/app.scss > dist/css/bundle.css",
     "js": "jspm bundle-sfx app.js dist/js/bundle.js",
     "postinstall": "jspm install",
     "server": "mkdir -p dist && http-server -p 8000 dist",
-    "start": "npm run server & npm run watch",
-    "watch": "npm run clean && npm run build && onchange src -- npm run build"
+    "start": "parallelshell 'npm run server' 'npm run watch'",
+    "test": "rm -f spec/compiled.js && jspm bundle-sfx spec.js src/js/spec/compiled.js --skip-source-maps && karma start",
+    "watch": "npm run clean && npm run build && parallelshell 'npm run watchCss' 'npm run watchJs' 'npm run watchStatic'",
+    "watchCss": "onchange src/css -- npm run css",
+    "watchJs": "onchange src/js -- npm run js",
+    "watchStatic": "onchange src/static -- npm run static"
   },
   "jspm": {
     "dependencies": {
-      "react": "npm:react@^0.14.2",
-      "react-dom": "npm:react-dom@^0.14.2"
+      "react": "npm:react@^0.14.7",
+      "react-dom": "npm:react-dom@^0.14.7"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
       "babel-runtime": "npm:babel-runtime@^5.8.24",
       "core-js": "npm:core-js@^1.1.4",
-      "jsx": "github:floatdrop/plugin-jsx@^1.1.0"
+      "jsx": "npm:plugin-jsx@^1.1.0",
+      "react-addons-test-utils": "npm:react-addons-test-utils@0.14.5"
     }
   },
   "devDependencies": {
     "http-server": "^0.8.5",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.15",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.6",
     "onchange": "^2.0.0",
+    "parallelshell": "^2.0.0",
     "watch": "^0.16.0"
   }
 }
